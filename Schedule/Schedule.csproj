@@ -33,8 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,16 +51,150 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Components\DayEstimationCell.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\DayEstimationCell.Designer.cs">
+      <DependentUpon>DayEstimationCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\LessonCell.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\LessonCell.Designer.cs">
+      <DependentUpon>LessonCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MainMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\NavigationElement.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\NavigationElement.Designer.cs">
+      <DependentUpon>NavigationElement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Property.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Property.Designer.cs">
+      <DependentUpon>Property.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Search.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\Search.Designer.cs">
+      <DependentUpon>Search.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Estimation\Factors\Day\DayEstimationFactor.cs" />
+    <Compile Include="Estimation\EstimationFactor.cs" />
+    <Compile Include="Estimation\Factors\Day\BreakDurationFactor.cs" />
+    <Compile Include="Estimation\Factors\Lesson\ComplexitySpreadingFactor.cs" />
+    <Compile Include="Estimation\Factors\Lesson\FirstLessonComplexityFactor.cs" />
+    <Compile Include="Estimation\EstimationFactorPool.cs" />
+    <Compile Include="Estimation\Factors\Lesson\LessonEstimationFactor.cs" />
+    <Compile Include="Estimation\Factors\Week\WeekEstimationFactor.cs" />
+    <Compile Include="Factories\CurriculumFactory.cs" />
+    <Compile Include="Factories\DisciplineFactory.cs" />
+    <Compile Include="Factories\Factory.cs" />
+    <Compile Include="Factories\GroupFactory.cs" />
+    <Compile Include="Factories\InstitutionFactory.cs" />
+    <Compile Include="Factories\RoomFactory.cs" />
+    <Compile Include="Factories\TeacherFactory.cs" />
+    <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Components\AbstractListController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Components\AbstractListController.Designer.cs">
+      <DependentUpon>AbstractListController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Storage\CurriculumRegistry.cs" />
+    <Compile Include="Storage\Event.cs" />
+    <Compile Include="Storage\Exportable.cs" />
+    <Compile Include="Storage\GroupRegistry.cs" />
+    <Compile Include="Storage\InstitutionRegistry.cs" />
+    <Compile Include="Storage\LessonRegistry.cs" />
+    <Compile Include="Storage\Registries.cs" />
+    <Compile Include="Storage\Registry.cs" />
+    <Compile Include="Storage\RoomRegistry.cs" />
+    <Compile Include="Storage\TeacherRegistry.cs" />
+    <Compile Include="Views\CurriculumsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\CurriculumsView.Designer.cs">
+      <DependentUpon>CurriculumsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GroupsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\GroupsView.Designer.cs">
+      <DependentUpon>GroupsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InstitutionsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\InstitutionsView.Designer.cs">
+      <DependentUpon>InstitutionsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoomsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\RoomsView.Designer.cs">
+      <DependentUpon>RoomsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScheduleView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ScheduleView.Designer.cs">
+      <DependentUpon>ScheduleView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TeachersView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\TeachersView.Designer.cs">
+      <DependentUpon>TeachersView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\View.cs" />
+    <Compile Include="Windows\CurriculumWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\CurriculumWindow.Designer.cs">
+      <DependentUpon>CurriculumWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ManageEntityWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\ManageEntityWindow.Designer.cs">
+      <DependentUpon>ManageEntityWindow.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Components\DayEstimationCell.resx">
+      <DependentUpon>DayEstimationCell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\LessonCell.resx">
+      <DependentUpon>LessonCell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\NavigationElement.resx">
+      <DependentUpon>NavigationElement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Property.resx">
+      <DependentUpon>Property.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\Search.resx">
+      <DependentUpon>Search.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -66,6 +205,34 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Components\AbstractListController.resx">
+      <DependentUpon>AbstractListController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CurriculumsView.resx">
+      <DependentUpon>CurriculumsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\GroupsView.resx">
+      <DependentUpon>GroupsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\InstitutionsView.resx">
+      <DependentUpon>InstitutionsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RoomsView.resx">
+      <DependentUpon>RoomsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ScheduleView.resx">
+      <DependentUpon>ScheduleView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TeachersView.resx">
+      <DependentUpon>TeachersView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\CurriculumWindow.resx">
+      <DependentUpon>CurriculumWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\ManageEntityWindow.resx">
+      <DependentUpon>ManageEntityWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -79,5 +246,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataTypes\DataTypes.csproj">
+      <Project>{611019a5-02af-440a-b964-74da63995814}</Project>
+      <Name>DataTypes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
